@@ -1,0 +1,29 @@
+name: MasterDeployCI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Packages
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Run Tests
+      run: npm test
+    - name: Deploy to GH Pages
+      run: |
+          git config --global user.email "gregtanyy@gmail.com>"
+          git config --global user.name "gregcake>"
+          git remote set-url origin https://840ac7c3acf880d22907a40b32d3dc01553f3a97@github.com/gregcake/demo.git
+          npm run deploy
