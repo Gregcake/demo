@@ -22,6 +22,6 @@ jobs:
     - name: Deploy to GH Pages
       run: |
         git config --global user.email "gregory.tan@tradegecko.com"
-        git config --global user.name "Gregcake"
+        git config --global user.name "Greg"
         git remote set-url origin https://Gregcake:d0ca345f05e882d798ca404addcf85c88fc63a56@github.com/Gregcake/demo.git
         npm run deploy
